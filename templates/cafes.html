@@ -1,0 +1,39 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}Restaurants{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid" style="background-color : #678983;">
+      <div class= "row">
+            <div class="col-sm-12">
+
+                  <h1>All Cafes</h1>
+
+                  <table class="table">
+                      {% for cafe in cafes %}
+                            {% if cafe[2] == 'Open' %}
+                                <tr>
+                                    {% for m in range(0,7) %}
+                                        <th>{{ cafe[m] }}</th>
+                                    {% endfor %}
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    {% for m in range(0,7) %}
+                                        {%  if m == 1 %}
+                                            <td><a href="{{ cafe[m] }}" style="color:blue;">Map Link</a></td>
+                                        {% else %}
+                                            <td>{{ cafe[m] }}</td>
+                                        {% endif %}
+                                    {% endfor %}
+                                </tr>
+                            {% endif %}
+                      {% endfor %}
+                  </table>
+              <p><a href="{{ url_for('home') }}" class="btn btn-primary" role="button">Return to index page</a></p>
+            </div>
+      </div>
+</div>
+
+{% endblock %}
